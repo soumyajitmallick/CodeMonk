@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="https://image.ibb.co/fOur3b/favicon.png" />
+  <meta name="theme-color" content="#1885ed">
+  <title>CodeMonk</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.css">
+  <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/mode/python/python.min.js"></script>
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+  <style>
+    .header__elenco {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        
+    }
+    .header__menu {
+        float: right;
+         margin: 40px;
+    }
+    .header__el{
+        padding: 0 25px;
+        display: inline-block;
+    }
+    .header__img{
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      vertical-align: middle;
+      /* border-radius: 50%;
+      border: 2px solid #fff;
+      box-shadow: 0px 7px 4px rgba(0,0,0,.2); */
+    }
+    /* .header__logo{
+      margin-right: 20px;
+    }
+    .header__el a{
+      display: inline-block;
+      
+    } */
+    
+    .header__logo, .header__menu{
+      display: inline-block;
+      vertical-align: middle;
+
+      
+    }
+    .header__title{
+      font-size: 18px;
+      margin: 10px;
+      margin-left: 10px;
+      display: inline-block;
+      line-height: 18px;
+      vertical-align: middle;
+    }
+    
+    .header__light{
+      color: #8198ae;
+    }
+    .header__link{
+      color: #1f4568;
+      font-size: 14px;
+        text-decoration: none;
+    
+    }
+    .header__link:hover{
+      text-decoration: none;
+      color:#3a9fff;
+    }
+    .navbar-toggle .icon-bar{
+      background-color: #8198ae;
+    }
+    .navbar-toggle {
+        margin: 5px 0;
+    }
+     @media (max-width: 768px) {
+      .footer__img {
+        margin: 0 auto;
+      }
+    }
+
+
+/* Hamburger Menu Toggle Button */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+}
+
+/* Hamburger Bars */
+.menu-toggle .icon-bar {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+/* ======= Responsive Styles for Mobile ======= */
+@media (max-width: 700px) {
+  .menu-toggle {
+    display: flex;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+  }
+
+
+  .header__nav {
+    display: none;
+    position: absolute;
+    top: 80px; /* below header */
+    right: 0;
+    width: 40%;
+    background-color: #f9f9f9;
+    flex-direction: column;
+    
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .header__nav.active {
+    display: flex;
+  }
+
+  .header__elenco {
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  .header__el {
+    padding: 12px 20px;
+    text-align: center;
+  }
+
+  .header__link {
+    font-size: 20px;
+    color: #1f4568;
+    text-decoration: none;
+  }
+
+  .header__link:hover {
+    color: #3a9fff;
+  }
+
+  .btn--white {
+    margin-top: 10px;
+  }
+}
+/* pythonpage start */
+/* Header */
+.nav-header {
+  background: #1885ed;
+  color: white;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  margin: 40px;
+}
+
+.nav-logo-img {
+  height: 40px;
+  margin-right: 10px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+}
+
+.nav-list li {
+  margin-right: 15px;
+}
+
+.nav-list a {
+  color: white;
+  text-decoration: none;
+}
+ </style>
+
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__container">
+      <div class="header__logo"> <a href="index.html"><img class="header__img" src="images/CMlogo.png"></a> 
+        <h1 class="header__title">Master coding <span class="header__light">like a monk.</span></h1>
+      </div>
+
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+
+      <div class="header__menu">
+        <!-- Toggle Button -->
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+        <!-- Navigation -->
+        <nav id="navbar" class="header__nav">
+          <ul class="header__elenco">
+            <li class="header__el"><a href="index.html" class="header__link">Home</a></li>
+            <li class="header__el"><a href="index.html#courses" class="header__link">Courses</a></li>
+            <li class="header__el"><a href="python.html" class="header__link">Python</a></li>
+             <li class="header__el"><a href="ML.html" class="header__link">Machine Learning</a></li>
+            <li class="header__el"><a href="index.html#contact" class="header__link">Contact us</a></li>
+            <li class="header__el header__el--blue"><a href="#" class="btn btn--white" style="text-decoration: none;">Sign In →</a></li>
+          </ul>
+        </nav>
+      </div>
+
+
+
+
+    </div>
+  </header>
+  <script >
+     const toggleBtn = document.getElementById('menu-toggle');
+    const navbar = document.getElementById('navbar');
+
+    toggleBtn.addEventListener('click', () => {
+      navbar.classList.toggle('active');
+    });
+    
+  </script>
+  </body>
+ 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    
+
+    h2 {
+      text-align: center;
+      padding: 15px 0;
+      margin: 0;
+      background-color: #1f1f1f;
+      border-bottom: 1px solid #333;
+    }
+
+    #editor {
+      height: 55vh;
+      width: 100%;
+      font-size: 16px;
+      border-bottom: 1px solid #333;
+    }
+
+    #output {
+      height: 30vh;
+      width: 100%;
+      background-color: #1e1e1e;
+      padding: 15px;
+      overflow-y: auto;
+      font-family: monospace;
+      white-space: pre-wrap;
+      border-top: 1px solid #333;
+      color: #00ff88;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px;
+      background-color:#6f79ff;
+      border-top: 1px solid #333;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #runBtn { background-color: #4CAF50; color: white; }
+    #runBtn:hover { background-color: #45a049; }
+
+    #clearBtn { background-color: #f44336; color: white; }
+    #clearBtn:hover { background-color: #d7372b; }
+
+    #downloadBtn { background-color: #2196F3; color: white; }
+    #resetBtn { background-color: #ff9800; color: white; }
+    #themeToggle { background-color: #9c27b0; color: white; }
+    #uploadBtn { background-color: #607d8b; color: white; }
+    #shareBtn { background-color: #00bcd4; color: white; }
+
+    @media (max-width: 600px) {
+      #editor { height: 45vh; }
+      #output { height: 35vh; }
+      .controls { flex-direction: column; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <h2 style="color: white;">🐍 Python Code Editor</h2>
+  <div id="editor"># Real Python code\nfor i in range(5):\n    print("Hello", i)</div>
+
+  <div class="controls">
+    <button id="runBtn">▶️ Run Code</button>
+    <button id="clearBtn">🧹 Clear Output</button>
+    <button id="downloadBtn">📥 Download Code</button>
+    <button id="resetBtn">🔄 Reset Template</button>
+    <button id="uploadBtn">📤 Upload Code</button>
+    <input type="file" id="uploadFile" accept=".py" style="display: none;">
+    <button id="themeToggle">🌗 Toggle Theme</button>
+    <button id="shareBtn">🔗 Share Code</button>
+  </div>
+
+  <div id="output">Output will appear here...</div>
+
+
+
+  <div class="sect sect--violet">
+    <img src="https://image.ibb.co/fWyVtb/path3762.png" class="career-img">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="career_title">Passionate About Education? Join Our Mission.</h1>
+          <h1 class="career_sub">Help shape the future of tech education — Check our [Open Positions].</h1>
+          <a href="#" class="btn btn--white btn--width" style="text-decoration: none;">Careers</a>
+        </div>
+      </div>
+    </div>
+ </div>
+ 
+ 
+  <footer class="footer">
+    <div class="container">
+      <!-- Top Left: Logo & Title -->
+      <div class="footer__center">
+
+        <img src="images/CMlogo.png" alt="CodeMonk Logo" class="footer__img" />
+        <p class="footer__desc">Learn Python, AI/ML, and Data Science the smart way — absolutely free</p>
+      </div>
+
+      <!-- Center: Links -->
+      <div class="footer__center">
+        <h4>Courses</h4>
+        <div class="footer__links">
+          <a href="#">Python</a>
+          <a href="#">AI/ML</a>
+          <a href="#">Data Science</a>
+          <a href="#">Projects</a>
+        </div>
+      </div>
+
+      <div class="footer__center">
+        <h4>Quick Links</h4>
+        <div class="footer__links">
+          <a href="#">About Us</a>
+          <a href="#">Courses</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+
+
+      <div class="footer__center">
+        <h4>Connect</h4>
+        <div class="footer__links">
+          <a href="#" target="_blank" title="GitHub">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" width="20"
+              style="vertical-align: middle; margin-right: 8px;">
+            GitHub
+          </a>
+          <a href="#" target="_blank" title="Twitter">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" width="20"
+              style="vertical-align: middle; margin-right: 8px;">
+            Twitter
+          </a>
+          <a href="#" target="_blank" title="LinkedIn">
+            <img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="LinkedIn" width="20"
+              style="vertical-align: middle; margin-right: 8px;">
+            LinkedIn
+          </a>
+          <a href="mailto:soumyajit2047@gmail.com" title="Email">
+            <img src="https://cdn-icons-png.flaticon.com/512/732/732200.png" alt="Email" width="20"
+              style="vertical-align: middle; margin-right: 8px;">
+            Email
+          </a>
+        </div>
+      </div>
+
+      <div class="footer__center">
+        <h4>Quick Links</h4>
+        <div class="footer__links">
+          <p>Bhubaneswar,Odisha</p>
+          <p>India</p>
+          <a href="#">+91 9999999999</a>
+          <a href="#">info@codemonk.in</a>
+        </div>
+      </div>
+
+
+
+
+    </div>
+  </footer>
+  <style>
+    body{
+    background-image: url("https://image.ibb.co/de6JzG/bitmap_1_1.png");
+      background-size:cover;
+      background-repeat:no-repeat;
+      background-position: center;
+    }
+         .header__el{
+        padding: 0 25px;
+        display: inline-block;
+    }
+    .btn:hover{
+    box-shadow: 0px 25px 18px -6px rgba(0, 0, 0,0.2);
+    background-color: #63b2fc;
+    color: #fff;
+    }
+     .btn--white:hover{
+      background-color: #fff;
+      color: #8198ae;
+    }
+    
+    .career-img {
+        position: absolute;
+        bottom: 0;
+    width: 65%;
+    z-index: 0;
+    left: 20%;
+    }
+     .row__sub {
+        font-size: 16px;
+       }
+      .row__title {
+        font-size: 20px;
+        margin-bottom: 5px;
+       }
+       .career_title {
+        font-size: 18px;
+    margin-top: 0;
+    }
+
+      .career_sub {
+        font-size: 14px;
+        margin-bottom: 20px;
+    }
+     .career_title {
+        color: #fff;
+        font-size: 28px;
+    }
+    
+    .career_sub {
+        font-size: 22px;
+        color: #c7cbff;
+        margin-top: 0;
+        margin-bottom: 30px;
+    }
+     .footer {
+      background-color: #6f79ff;
+      color: white;
+      padding: 60px 0;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    
+    .footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 30px; /* uniform spacing between all columns */
+    }
+    
+    /* Each column behaves equally */
+    .footer__left,
+    .footer__center
+    {
+      flex: 1;
+      min-width: 220px;
+    }
+    
+    /* Logo & Title */
+    .footer__img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+    
+    .footer__title {
+      font-size: 30px;
+      font-weight: bold;
+      margin: 0;
+      color: white;
+    }
+    
+    .footer__light {
+      color: #e0e0ff;
+    }
+    
+    .footer__desc {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #ddd;
+      line-height: 1.6;
+    }
+    
+    /* Center links */
+    .footer h4 {
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: white;
+    }
+    
+    .footer__links a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      margin-bottom: 8px;
+      font-size: 17px;
+      transition: color 0.3s ease;
+    }
+    
+    .footer__links a:hover {
+      color: #ffddff;
+    }
+    
+    /* Social section */
+    
+    
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .footer .container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    
+      .footer__left,
+      .footer__center,
+      .footer__right {
+        text-align: center;
+        padding: 0;
+      }
+    
+      .footer__social {
+        justify-content: center;
+      }
+    }
+    .footer__img {
+      width: 70px;         /* Slightly larger for visibility */
+      height: auto;        /* Maintain aspect ratio */
+      margin-bottom: 12px;
+      border-radius: 8px;  /* Optional: rounded edges for a modern look */
+    background-color: rgb(236, 239, 241);
+      box-shadow: 0 2px 6px rgba(152, 137, 190, 0.15); /* Subtle shadow */
+    }
+     @media (max-width: 768px) {
+      .footer__img {
+        margin: 0 auto;
+      }
+    }
+    .footer-section a {
+  color: white;
+  display: block;
+  margin-top: 5px;
+}
+.sect{
+      padding: 90px 0;
+      position: relative;
+    }
+     .sect--violet{
+      background-color:#6f79ff;
+    }
+    
+  </style>
+
+
+
+
+
+
+
+
+
+  <!-- Ace Editor -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.14/ace.js"></script>
+
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+
+  <script>
+    const editor = ace.edit("editor");
+    let isDark = true;
+    editor.setTheme("ace/theme/monokai");
+    editor.session.setMode("ace/mode/python");
+
+    const output = document.getElementById("output");
+
+    // Auto load saved code
+    const savedCode = localStorage.getItem("pythonCode");
+    if (savedCode) editor.setValue(savedCode, -1);
+
+    // Auto-save
+    editor.session.on('change', () => {
+      localStorage.setItem("pythonCode", editor.getValue());
+    });
+
+    let pyodide = null;
+    async function initPyodide() {
+      pyodide = await loadPyodide();
+      output.textContent = "✅ Pyodide loaded. Ready to run Python code!";
+    }
+    initPyodide();
+
+    document.getElementById("runBtn").addEventListener("click", async () => {
+      const code = editor.getValue();
+      if (!pyodide) return output.textContent = "⚠️ Pyodide is still loading...";
+
+      try {
+        await pyodide.runPythonAsync(`
+import sys, io
+from contextlib import redirect_stdout, redirect_stderr
+stdout, stderr = io.StringIO(), io.StringIO()
+with redirect_stdout(stdout), redirect_stderr(stderr):
+    try:
+${code.split("\n").map(line => "        " + line).join("\n")}
+    except Exception:
+        import traceback
+        traceback.print_exc()
+out = stdout.getvalue() + stderr.getvalue()
+        `);
+        const result = pyodide.globals.get("out");
+        output.textContent = result.trim() || "✅ Code executed successfully with no output.";
+      } catch (err) {
+        output.textContent = "❌ Error:\n" + err;
+      }
+    });
+
+    document.getElementById("clearBtn").addEventListener("click", () => {
+      output.textContent = "";
+    });
+
+    document.getElementById("downloadBtn").addEventListener("click", () => {
+      const code = editor.getValue();
+      const blob = new Blob([code], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'script.py';
+      link.click();
+    });
+
+    document.getElementById("resetBtn").addEventListener("click", () => {
+      const defaultCode = "# Real Python code\nfor i in range(5):\n    print(\"Hello\", i)";
+      editor.setValue(defaultCode, -1);
+      localStorage.setItem("pythonCode", defaultCode);
+    });
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      isDark = !isDark;
+      editor.setTheme(isDark ? "ace/theme/monokai" : "ace/theme/github");
+      document.body.style.backgroundColor = isDark ? "#121212" : "#f9f9f9";
+      document.body.style.color = isDark ? "#ffffff" : "#000000";
+      output.style.backgroundColor = isDark ? "#1e1e1e" : "#eeeeee";
+      output.style.color = isDark ? "#00ff88" : "#333";
+    });
+
+    document.getElementById("uploadBtn").addEventListener("click", () => {
+      document.getElementById("uploadFile").click();
+    });
+
+    document.getElementById("uploadFile").addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        editor.setValue(e.target.result, -1);
+        localStorage.setItem("pythonCode", e.target.result);
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById("shareBtn").addEventListener("click", () => {
+      const code = editor.getValue();
+      alert("🚧 Share feature coming soon!\n\nYour code snippet:\n\n" + code.slice(0, 200));
+    });
+  </script>
+</body>
+</html>
